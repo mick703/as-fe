@@ -1,28 +1,37 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <b-container>
+      <b-row>
+        <b-col cols="12" md="4"><Sidebar /></b-col>
+        <b-col cols="12" md="8"><Map :geoData="features" /></b-col>
+      </b-row>
+    </b-container>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Sidebar from "./components/Sidebar";
+import Map from "./components/Map";
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
-    HelloWorld
-  }
-}
+    Sidebar,
+    Map,
+  },
+  data() {
+    return {
+      features: [],
+    };
+  },
+  mounted() {
+    fetch("https://bitbucket.org/idda/coding-challenges/raw/3d4b01cd8468a83cb173ff30711f637e4d8c3258/testBlob.json")
+      .then((response) => response.json())
+      .then((data) => {
+        this.features = data.features;
+      });
+  },
+};
 </script>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
+<style scoped></style>
