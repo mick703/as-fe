@@ -1,9 +1,17 @@
 <template>
-  <div id="app">
+  <div id="project-finder-app">
     <b-container>
+      <b-navbar variant="light" type="light" class="navbar d-flex justify-content-between">
+        <b-navbar-brand href="#">Project Finder</b-navbar-brand>
+        <b-nav-text>
+          <h3>
+            <b-badge pill variant="info">{{ currentFeatures.features.length }} Projects Found</b-badge>
+          </h3></b-nav-text
+        >
+      </b-navbar>
       <b-row>
         <b-col cols="12" md="4"><Sidebar /></b-col>
-        <b-col cols="12" md="8"><Map :geoData="features" /></b-col>
+        <b-col cols="12" md="8"><Map /></b-col>
       </b-row>
     </b-container>
   </div>
@@ -12,6 +20,7 @@
 <script>
 import Sidebar from "./components/Sidebar";
 import Map from "./components/Map";
+import { mapState } from "vuex";
 
 export default {
   name: "App",
@@ -19,19 +28,17 @@ export default {
     Sidebar,
     Map,
   },
-  data() {
-    return {
-      features: [],
-    };
-  },
-  mounted() {
-    fetch("https://bitbucket.org/idda/coding-challenges/raw/3d4b01cd8468a83cb173ff30711f637e4d8c3258/testBlob.json")
-      .then((response) => response.json())
-      .then((data) => {
-        this.features = data.features;
-      });
+
+  computed: {
+    ...mapState(["currentFeatures"]),
   },
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.navbar {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  border-radius: 0.25rem;
+}
+</style>
