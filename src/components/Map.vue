@@ -159,8 +159,8 @@ export default {
   width: 25px;
   height: 25px;
   border: 1px solid #ccc;
-  border-radius: 50% 50% 50% 0;
-  background: #ffb600;
+  border-radius: 75% 45% 75% 0%;
+  background: #3498db;
   bottom: 0;
   transform-origin: 0% 100%;
   transform: rotate(-45deg) scale(1);
