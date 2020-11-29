@@ -1,18 +1,16 @@
 <template>
-  <b-container class="multiselect-container">
+  <b-container class="range-slider-container">
     <b-row>
       <b-col>
         <b-card no-body>
           <b-card-header class="d-flex justify-content-between">
             <span class="facet-name">{{ label }}</span>
-            <b-button v-if="selected.length > 0" pill variant="info" size="sm" @click="clearFilter">Clear</b-button>
+            <b-button v-if="selected[0] > min || selected[1] < max" pill variant="info" size="sm" @click="clearFilter">Clear</b-button>
           </b-card-header>
 
           <b-card-body>
             <b-form-group>
-              <b-form-checkbox v-for="(option, index) in options" v-model="selected" :key="index" :value="option" :name="name">
-                {{ option }}
-              </b-form-checkbox>
+              <vue-slider v-model="selected" :min="min" :max="max" :enable-cross="false" :tooltip="'always'"></vue-slider>
             </b-form-group>
           </b-card-body>
         </b-card>
@@ -22,26 +20,29 @@
 </template>
 
 <script>
+import VueSlider from "vue-slider-component";
+import "vue-slider-component/theme/default.css";
+import { debounce } from "lodash";
+
 export default {
-  props: { label: String, name: String, options: Set },
-  data() {
+  props: { min: Number, max: Number, label: String, name: String },
+  components: {
+    VueSlider,
+  },
+  data: function () {
     return {
-      selected: [], // Must be an array reference!
+      selected: [this.min, this.max],
     };
   },
-
   watch: {
-    selected: function (val) {
+    selected: debounce(function (val) {
       this.$store.dispatch("updateFilter", { filterName: this.name, filterOptions: val });
       this.$store.dispatch("filterResults");
-    },
-  },
-  mounted() {
-    this.$store.dispatch("registerFilter", { newFilterName: this.name });
+    }, 500),
   },
   methods: {
     clearFilter() {
-      this.selected = [];
+      this.selected = [this.min, this.max];
     },
   },
 };

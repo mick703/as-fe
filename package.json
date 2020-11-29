@@ -11,9 +11,11 @@
     "bootstrap": "^4.5.3",
     "bootstrap-vue": "^2.19.0",
     "core-js": "^3.6.5",
+    "lodash": "^4.17.20",
     "mapbox-gl": "^1.13.0",
     "vue": "^2.6.11",
     "vue-mapbox": "^0.4.1",
+    "vue-slider-component": "^3.2.11",
     "vuex": "^3.6.0"
   },
   "devDependencies": {

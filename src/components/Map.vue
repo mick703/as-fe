@@ -148,6 +148,8 @@ export default {
   top: 0;
   bottom: 0;
   width: 100%;
+  border-radius: 0.25rem;
+  border: 1px solid #ccc;
 }
 
 .marker:before {
@@ -158,7 +160,7 @@ export default {
   height: 25px;
   border: 1px solid #ccc;
   border-radius: 50% 50% 50% 0;
-  background: #e85d04;
+  background: #ffb600;
   bottom: 0;
   transform-origin: 0% 100%;
   transform: rotate(-45deg) scale(1);
