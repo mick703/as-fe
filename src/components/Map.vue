@@ -96,7 +96,7 @@ export default {
 
               <ul class="list-group list-group-flush">
                 <li class="list-group-item">
-                  <span class='label'>Value($):</span>${parseInt(feature.properties.project.Value)} K
+                  <span class='label'>Value($):</span>${Number(feature.properties.project.Value)} K
                 </li>
                 <li class="list-group-item">
                   <span class='label'>Address:</span>${feature.properties.project.Address}
@@ -105,16 +105,16 @@ export default {
                   <span class='label'>Suburb:</span>${feature.properties.project.Suburb}
                 </li>
                 <li class="list-group-item">
-                  <span class='label'>Floor Area(m2):</span>${parseInt(feature.properties.project["Floor Area"])}
+                  <span class='label'>Floor Area(m2):</span>${Number(feature.properties.project["Floor Area"])}
                 </li>
                 <li class="list-group-item">
-                  <span class='label'>Site Area(m2):</span>${parseInt(feature.properties.project["Site Area"])}
+                  <span class='label'>Site Area(m2):</span>${Number(feature.properties.project["Site Area"])}
                 </li>
                 <li class="list-group-item">
-                  <span class='label'>Stories:</span>${parseInt(feature.properties.project.Storeys)}
+                  <span class='label'>Stories:</span>${Number(feature.properties.project.Storeys)}
                 </li>
                 <li class="list-group-item">
-                  <span class='label'>Units:</span>${parseInt(feature.properties.project.Units)}
+                  <span class='label'>Units:</span>${Number(feature.properties.project.Units)}
                 </li>
                 <li class="list-group-item">
                   <span class='label'>Stage:</span>${feature.properties.project.Stage}

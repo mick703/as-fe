@@ -20,11 +20,11 @@ export default {
       states.add(feature.properties.project.State)
       ownerships.add(feature.properties.project.Ownership)
       devTypes.add(feature.properties.project['Dev. Type'])
-      valueRange.push(parseInt(feature.properties.project.Value))
-      floorAreaRange.push(parseInt(feature.properties.project['Floor Area']))
-      siteAreaRange.push(parseInt(feature.properties.project['Site Area']))
-      storeyRange.push(parseInt(feature.properties.project['Storeys']))
-      unitRange.push(parseInt(feature.properties.project['Units']))
+      valueRange.push(Number(feature.properties.project.Value))
+      floorAreaRange.push(Number(feature.properties.project['Floor Area']))
+      siteAreaRange.push(Number(feature.properties.project['Site Area']))
+      storeyRange.push(Number(feature.properties.project['Storeys']))
+      unitRange.push(Number(feature.properties.project['Units']))
     })
 
     const sortFn = (a, b) => (a - b)
@@ -63,9 +63,9 @@ export default {
         for (const facetName of facetNames) {
           // Handle the range filter
           if (RANGE_FACET_NAMES.includes(facetName)) {
-            if ((parseInt(feature.properties.project[facetName]) <
+            if ((Number(feature.properties.project[facetName]) <
               filters[facetName][0] ||
-              parseInt(feature.properties.project[facetName]) >
+              Number(feature.properties.project[facetName]) >
               filters[facetName][1])) {
               return false
             } else {
